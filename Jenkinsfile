@@ -1,5 +1,5 @@
 pipeline {
-	agent any {
+	agent any	
 		stages {
 			stage "SCM Checkout"
 			{
@@ -13,6 +13,6 @@ pipeline {
 						{
 						sh 'maven test'
 						}		
-					}		
-				}					
-			}		
+		}		
+	}					
+}
