@@ -6,12 +6,13 @@ pipeline {
 				git 'https://github.com/arijitslg1/maven-project.git'
 				}
 			}
-			stage ('Testing Stage') {	
+			stage ('Testing Stage') 
+				{	
 				steps {
-						withMaven(maven : 'LocalMaven') {
+						withMaven(maven : 'LocalMaven') 
+						{
 						sh 'maven test'
+						}		
 					}		
-		}		
-	}		
-}		
-}
+				}					
+			}		
