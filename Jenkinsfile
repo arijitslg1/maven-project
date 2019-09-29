@@ -1,7 +1,8 @@
 pipeline {
-agent any {
-	stages {
-		stage 'SCM Checkout'
+		agent any {
+	
+		stages {
+			stage ('SCM Checkout')
 			{
 				git 'https://github.com/arijitslg1/maven-project.git'
 				}
@@ -17,4 +18,3 @@ agent any {
 			}		
 	}		
 
-}
