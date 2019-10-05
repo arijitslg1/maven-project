@@ -7,21 +7,12 @@ pipeline {
 						git 'https://github.com/arijitslg1/maven-project.git'
 					}
 			}
-			{
-			stage ('Testing Stage') 
-					{	
-						steps 	{
-								withMaven(maven : 'LocalMaven') 
-									{		
-										sh 'mvn test'
-									}				
-								}		
-				}							
-			}
+			
 		{
 			stage ('Build && SonarQube Analysis') 
 					{	
-						steps 	{
+			agent {label 'maven'}
+				steps 	{
              						 withSonarQubeEnv('sonar'){
 								withMaven(maven : 'LocalMaven') 
 									{		
@@ -31,15 +22,4 @@ pipeline {
             				}	
          			 }
      		 }
-			{
-			stage ('Testing Installation') 
-					{	
-						steps 	{
-								withMaven(maven : 'LocalMaven') 
-									{		
-										sh 'mvn install'
-									}				
-								}		
-					}							
-			}
-			}
+}
