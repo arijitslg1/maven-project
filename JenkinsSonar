@@ -11,7 +11,7 @@ pipeline {
 		{
 			stage ('Build && SonarQube Analysis') 
 					{	
-			agent {label 'maven'}
+//			agent {label 'maven'}
 				steps 	{
              						 withSonarQubeEnv('sonar'){
 								withMaven(maven : 'LocalMaven') 
