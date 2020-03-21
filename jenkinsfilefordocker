@@ -13,5 +13,12 @@ node{
        sh 'docker build -t pkw0301/prakash-app:1.0.0 .' 
     }
     
+    stage ('Push Docker image to DockerHub') { 
+      withCredentials([string(credentialsId: 'dockerhubaccount', variable: 'dockerhubaccount')]) { 
+        sh "docker login -u arijitslg1 -p ${dockerhubaccount}" 
+      } 
+        sh 'docker push arijitslg1/docker-tomcat-app:1.0.0' 
+      }
+      
     
 }
