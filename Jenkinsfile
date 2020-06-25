@@ -17,7 +17,7 @@ pipeline {
               }
 	
 	
-	stage ('Testing Stage') 
+	stage ('Testing Stage') {
 	    steps {
 		withMaven(jdk: 'localjdk-1.8', maven : 'LocalMaven') 
 		{		
@@ -26,7 +26,7 @@ pipeline {
 	       }		
 	      }							
 	
-	stage ('Testing Installation') 
+	stage ('Testing Installation') {
 	   steps {
 		withMaven(jdk: 'localjdk-1.8', maven : 'LocalMaven') 
 		{
@@ -36,4 +36,3 @@ pipeline {
             }
 
     }      
-}
