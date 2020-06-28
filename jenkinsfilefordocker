@@ -10,18 +10,18 @@ node{
     }
     
     stage ('docker image build') { 
-       sh 'docker build -t arijitslg1/prakash-app:1.0.0 .' 
+       sh 'docker build -t arijitslg1/mydockerapp:1.0.0 .' 
     }
     
     stage ('Push Docker image to DockerHub') { 
       withCredentials([string(credentialsId: 'DockerID', variable: 'DockerID')]) { 
         sh "docker login -u arijitslg1 -p ${dockerhubaccount}" 
       } 
-        sh 'docker push arijitslg1/docker-tomcat-app:1.0.0' 
+        sh 'docker push arijitslg1/mydockerapp:1.0.0' 
     }
       
     // stage ('Deploy to Dev') { 
-    //   def dockerRun = 'docker run -d -p 9000:8080 --name my-tomcat-app pkw0301/prakash-app:1.0.0' 
+    //   def dockerRun = 'docker run -d -p 9000:8080 --name my-tomcat-app arijitslg1/mydockerapp:1.0.0' 
     //   sshagent(['deploy-to-dev-docker']) { 
     //     sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.43.212 ${dockerRun}" 
     //   } 
