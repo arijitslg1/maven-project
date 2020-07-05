@@ -1,39 +1,41 @@
-pipeline {
-    agent any	
-    stages {
-	    stage ('SCM Checkout') {
-	    steps {	
-	       git url: "https://github.com/arijitslg1/maven-project"
-	 }
-	}
-	
-	stage ('Compile Stage') {
-            steps {
-                withMaven(jdk: 'localjdk-1.8', maven: 'localmaven') 
-                {   
-                    sh 'mvn compile' 
-                }
-               }
-              }
-	
-	
-	stage ('Testing Stage') {
-	    steps {
-		withMaven(jdk: 'localjdk-1.8', maven : 'LocalMaven') 
-		{		
-		    sh 'mvn test'
-		}				
-	       }		
-	      }							
-	
-	stage ('Testing Installation') {
-	   steps {
-		withMaven(jdk: 'localjdk-1.8', maven : 'LocalMaven') 
-		{
-                    sh 'mvn install'
-                }                                 
-              }
-            }
+pipeline
+{
+   agent any
+   stages
+   { 
+       stage('scm checkout')
+       {
+           steps {
+               git branch: 'master', url: 'https://github.com/prakashk0301/maven-project'
+         }
+       }
 
-    }      
+       stage('please compile code')
+       { 
+	   steps {
+             withMaven(jdk: 'locakjdk-1.8', maven: 'localmaven') {
+             sh 'mvn compile'
+	   }
+         }
+       }
+      
+       stage('please test code')
+       { 
+	   steps {
+             withMaven(jdk: 'locakjdk-1.8', maven: 'localmaven') {
+              sh 'mvn test'
+	    }
+         }
+       }
+
+       stage('please build code')
+       { 
+	   steps {
+             withMaven(jdk: 'locakjdk-1.8', maven: 'localmaven') {
+             sh 'mvn package'
+	    }
+         }
+       }
+   }
 }
+	   
