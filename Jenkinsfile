@@ -30,7 +30,7 @@ pipeline {
 	   steps {
 		withMaven(jdk: 'localjdk-1.8', maven : 'LocalMaven') 
 		{
-                    sh 'mvn install'
+                    sh 'mvn package'
                 }                                 
               }
             }
