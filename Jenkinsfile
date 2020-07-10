@@ -2,18 +2,18 @@ pipeline
 {
    agent any
 	
-   tools {
-  // Install the Maven version configured as "M3" and add it to the path.
-     maven 'LocalMaven'
-     jdk 'LocalJDK'
-   }
+ //  tools {
+ // Install the Maven version configured as "M3" and add it to the path.
+ //    maven 'LocalMaven'
+ //    jdk 'LocalJDK'
+ //  }
 	
    stages
    { 
        stage('scm checkout')
        {
            steps {
-               git branch: 'master', url: 'https://github.com/prakashk0301/maven-project'
+               git branch: 'master', url: 'https://github.com/arijitslg1/maven-project'
          }
        }
 
