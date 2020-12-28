@@ -20,7 +20,7 @@ pipeline
        stage('please compile code')
        { 
 	   steps {
-             withMaven(jdk: 'localjdk-1.8', maven: 'localmaven') {
+             withMaven(jdk: 'LocalJDK', maven: 'localmaven') {
              sh 'mvn compile'
 	   }
          }
@@ -29,7 +29,7 @@ pipeline
        stage('please test code')
        { 
 	   steps {
-             withMaven(jdk: 'localjdk-1.8', maven: 'localmaven') {
+             withMaven(jdk: 'LocalJDK', maven: 'localmaven') {
               sh 'mvn test'
 	    }
          }
@@ -38,12 +38,20 @@ pipeline
        stage('please build code')
        { 
 	   steps {
-             withMaven(jdk: 'localjdk-1.8', maven: 'localmaven') {
+             withMaven(jdk: 'LocalJDK', maven: 'localmaven') {
              sh 'mvn package'
 	    }
          }
        }
 	   
+	stage ('Deploy-to-Tomcat-Dev') {
+	   steps {
+		sshagent(['8ba058c6-d4c2-4930-8af9-6d7f899d60bc']) {
+                sh 'scp -o StrictHostKeyChecking=no */target/*.war ec2-user@172.31.21.251:/var/lib/tomcat/webapps'
+                }
+	      }
+	    }   
+
+	   
    }
 }
-	   
